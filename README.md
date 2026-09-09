@@ -1,0 +1,1 @@
+Repositorio do treinamento IMpacta/Avanade Data Science IA. 
