@@ -1,0 +1,9 @@
+USE TreinamentosDB;
+GO
+
+-- 1. definir a consulta de inserção de dados numa table
+INSERT INTO Categorias (NomeCategoria)
+VALUES 
+('Programação'),
+('Banco de Dados'),
+('Gestão')
