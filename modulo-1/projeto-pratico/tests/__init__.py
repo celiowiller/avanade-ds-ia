@@ -1,0 +1,1 @@
+# este arquivo identifica a pasta tests como um 'pacote' que será reconheciodo pelo ambiente virtual como um python package
