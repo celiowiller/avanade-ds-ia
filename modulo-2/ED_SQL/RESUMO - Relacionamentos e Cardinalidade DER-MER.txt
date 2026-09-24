@@ -1,0 +1,36 @@
+Relacionamentos e Cardinalidade entre Entidades
+
+1. O que é Cardinalidade?
+A cardinalidade define a quantidade máxima e mínima de ocorrências de uma entidade que podem estar associadas a uma ocorrência de outra entidade.
+Ela responde a perguntas do tipo:
+	"Um cliente pode ter quantos pedidos?"
+	"Um produto pode aparecer em quantos pedidos?"
+
+2. Os 3 Tipos Principais de Relacionamentos
+Relacionamento Um para Um (1:1)
+	Conceito: Um registro na Tabela A relaciona-se com no máximo um registro na Tabela B, e vice-versa.
+	Exemplo no Mundo Real:
+	Pessoa (1) <---> (1) Cartão de Cidadão/CPF
+	Usuário (1) <---> (1) Configurações da Conta
+	Como implementar no Banco de Dados:
+	A Chave Estrangeira (FK) pode ficar em qualquer uma das duas tabelas.
+	A coluna que recebe a FK deve ter uma restrição UNIQUE para garantir que o relacionamento não se repita.
+
+Relacionamento Um para Muitos (1:N)
+	Conceito: Um registro na Tabela A pode relacionar-se com vários registros na Tabela B, mas um registro na Tabela B relaciona-se com apenas um registro na Tabela A.
+	É o relacionamento mais comum em bancos relacionais.
+	Exemplos no Nosso Desafio:
+	Cliente (1) <---> (N) Vendas (Um cliente pode fazer várias compras, mas cada compra pertence a um único cliente).
+	Vendedor (1) <---> (N) Vendas (Um vendedor atende vários pedidos, mas cada pedido tem um único vendedor responsável).
+
+Relacionamento Muitos para Muitos (N:N)
+	Conceito: Um registro na Tabela A relaciona-se com vários registros na Tabela B, e um registro na Tabela B relaciona-se com vários registros na Tabela A.
+	Exemplo no Nosso Desafio:
+	Vendas (N) <---> (N) Produtos
+	Uma venda pode ter vários produtos.
+	Um produto pode ser vendido em vários pedidos diferentes.
+	A Regra de Ouro do Banco Relacional:
+Bancos de dados relacionais NÃO conseguem implementar um relacionamento N:N diretamente entre duas tabelas.
+	Como implementar no Banco de Dados:
+	Para resolver um relacionamento N:N, é obrigatório criar uma tabela intermediária (também chamada de Tabela Associativa, Tabela de Junção ou Tabela Pívoa).
+

@@ -14,6 +14,10 @@ USE LogiTechDB
 GO
 
 -- 1.1 Tabela Cadastral: Clientes
+-- 1ª leitura de Cardinalidade: (Clientes <---> Vendas): (0, N) = N
+-- 1ª leitura de Cardinalidade: (Vendas <---> Clientes): (1, 1)
+
+-- Cardinalidade resultante: 1:N
 CREATE TABLE Clientes(
     ID_Cliente INT IDENTITY(1, 1) PRIMARY KEY,
     Nome_Cliente VARCHAR(100) NOT NULL,
@@ -22,6 +26,11 @@ CREATE TABLE Clientes(
 )
 
 -- 1.2 Tabela Cadastral: Vendedores
+
+-- 2ª leitura de Cardinalidade: Vendas <--> Vendedores -> (Vendas <---> Vendedores): (1, 1) = 1
+-- 2ª leitura de Cardinalidade: Vendedores <--> Vendas -> (Vendedores <---> Vendas): (0, N) = N
+
+-- Cardinalidade Resultante: 1:N
 CREATE TABLE Vendedores(
     ID_Vendedor INT IDENTITY(1, 1) PRIMARY KEY,
     Nome_Vendedor VARCHAR(100) NOT NULL,
@@ -45,6 +54,19 @@ CREATE TABLE Produtos(
 )
 
 -- 1.4 Tabela Transacional: Vendas
+
+-- 1ª leitura de Cardinalidade: (Vendas <---> Clientes): (1, 1) 
+-- 1ª leitura de Cardinalidade: (Clientes <---> Vendas): (0, N) = N 
+
+-- agora, precisamos de uma cardinalidade resultante -->  1:N
+-- 1ª leitura de Cardinalidade: a cardinalidade resultante é *** composta pelo valor minimo e maximo de cardinalidade observadas nas "pontas" e, extraimos os valores maximos;
+
+-- COMO OBTEMOS A CARDINALIDADE RESULTANTE: Juntamos apenas os valores maximos observados nas duas "pontas":
+
+--   Maximo de Clientes -> Vendas = N
+--   Maximo de Vendas -> Clientes = 1
+-- quando combinamos os dois valores maximos (1 e N), o relacionamento é classificado como 1:N (Um para Muitos)
+
 CREATE TABLE Vendas(
     ID_Venda INT IDENTITY(1, 1) PRIMARY KEY,
     Data_Venda DATE NOT NULL,
@@ -55,6 +77,7 @@ CREATE TABLE Vendas(
 )
 
 -- 1.5 Tabela do relacionamento Intermediario: Itens_Venda
+-- em função de obtermos uma cardinalidade N:N entre Produtos e Vendas - criamos uma table Associativa -> Itens_Venda; assim, resolvemos o contexot das relação indireta entre as dua tables.
 CREATE TABLE Itens_Venda(
 
     ID_Venda INT NOT NULL,
@@ -88,4 +111,12 @@ CREATE TABLE Itens_Venda(
 -- 6.1: STR(ID_Produto, 4): aqui, temos o processo de conversão; o ID_produto - numérico - se torna uma string com o uso da função STR(); o valor 4 determina a quantidade de caracteres desejados;
 
 -- 6.2: ' ', '0': temos um espaço vazio ( ' ' ) -> portanto, a função REPLACE ir´pa 'varrer' este espaço fazendo a contagem dos caracteres; por exemplo: ID_Produto == 1 -> teremos: '   1' tres espaços vazios e o quarto espaçoi ocupado pelo numero 1 e, assim, sucessivamente. Mas, temos a função REPLACE com outro parametro: '0'; significa que a saida anterior: '   1' será, na verdade, -> '0001'
+
+
+
+
+
+-- ANALISE DE CARDINALIDADE Produtos <--> Vendas 
+-- ANALISE DE CARDINALIDADE Vendas <--> Produtos
+-- neste caso, CARDINALIDADE RESULTANTE: N:N
 
