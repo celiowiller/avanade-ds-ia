@@ -1,0 +1,11 @@
+Uma CTE (Common Table Expression, ou Expressão de Tabela Comum) é uma tabela temporária nomeada que existe apenas durante a execução de uma consulta SQL. Ela funciona como uma "subconsulta organizada" que você define no início do código usando a instrução WITH e pode consultar logo em seguida no seu SELECT, INSERT, UPDATE ou DELETE.
+
+Por que usar uma CTE?
+Organização e Leitura: Divide consultas complexas e extensas em etapas lógicas e fáceis de ler.
+
+Reutilização: Você pode referenciar a mesma CTE várias vezes na consulta principal.
+
+Manutenção: Facilita muito identificar e corrigir erros em partes específicas da consulta.
+
+Exemplo: CTE de Agregação Diária por Vendedor
+Em cenários reais de análise de dados, tabelas de vendas registram cada transação individualmente (nível de item ou nota fiscal). Uma CTE de agregação diária por vendedor serve para pré-consolidar esses dados linha a linha em resumos diários por vendedor antes de aplicar filtros finais ou junções com outras tabelas.

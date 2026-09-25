@@ -87,7 +87,7 @@ CREATE TABLE Itens_Venda(
     CONSTRAINT PK_Itens_Venda PRIMARY KEY (ID_Venda, Cod_Produto),
     CONSTRAINT FK_Itens_Vendidos FOREIGN KEY(ID_Venda) REFERENCES Vendas(ID_Venda),
     CONSTRAINT FK_Itens_Produtos FOREIGN KEY(Cod_Produto) REFERENCES Produtos(Cod_Produto)
-)
+);
 
 --  Cod_Produto : nome da coluna que estamos criando
 -- AS (...): definição que esta é uma coluna calculada
@@ -119,4 +119,5 @@ CREATE TABLE Itens_Venda(
 -- ANALISE DE CARDINALIDADE Produtos <--> Vendas 
 -- ANALISE DE CARDINALIDADE Vendas <--> Produtos
 -- neste caso, CARDINALIDADE RESULTANTE: N:N
+
 
